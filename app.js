@@ -10,30 +10,33 @@ var getsecond = document.getElementById("getsec");
 var getmilisecond = document.getElementById("getmilisec");
 
 function start() {
+  clearInterval(Interval); // Prevent multiple intervals
   Interval = setInterval(function () {
     milisec++;
     getmilisecond.innerHTML = `${milisec}ms`;
-    
+
     if (milisec >= 100) {
-        second++;
+      second++;
       getsecond.innerHTML = `${second}s`;
       milisec = 0;
-    } else if (second >= 60) {
+    }
+    if (second >= 60) {
       minutus++;
       getminutus.innerHTML = `${minutus}m`;
       second = 0;
-    } else if (minutus >= 59) {
+    }
+    if (minutus >= 59) {
       hours++;
       getHours.innerHTML = `${hours}h`;
       minutus = 0;
     }
   }, 10);
-  document.getElementById("disb").disabled = true;
+  document.getElementById("disb").disabled = true; 
 }
 
 function stop() {
   clearInterval(Interval);
-  document.getElementById("disb").disabled = false;
+  document.getElementById("disb").disabled = false; 
 }
 
 function reset() {
@@ -41,9 +44,9 @@ function reset() {
   minutus = 0;
   second = 0;
   milisec = 0;
-  getHours.innerHTML = hours;
-  getminutus.innerHTML = minutus;
-  getsecond.innerHTML = second;
-  getmilisecond.innerHTML = milisec;
-  document.getElementById("disb").disabled = false;
+  getHours.innerHTML = `0h`;
+  getminutus.innerHTML = `0m`;
+  getsecond.innerHTML = `0s`;
+  getmilisecond.innerHTML = `0ms`;
+  document.getElementById("disb").disabled = false; 
 }
